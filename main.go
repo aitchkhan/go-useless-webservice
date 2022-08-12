@@ -1,9 +1,9 @@
 package main
 
 import (
-	"errors"
-	"fmt"
+	"net/http"
 
+	"github.com/aitchkhan/go-useless-webservice/controllers"
 	"github.com/aitchkhan/go-useless-webservice/models"
 )
 
@@ -14,15 +14,7 @@ var u = models.User{
  LastName:  "Khan",
 }
 func main() {
-	startWebServer(3000)
+	controllers.RegisterControllers()
+	http.ListenAndServe(":8000", nil)
 }
 
-
-func startWebServer(port int) (int, error) {
-	fmt.Println("Starting web server")
-	fmt.Println("Started web server")
-	if (port!=3000) {
-		return 0, errors.New("Something went wrong")
-	}
-	return port, nil
-}
